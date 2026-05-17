@@ -90,16 +90,25 @@ function renderInventory() {
 }
 
 function renderBottleCard(bottle, category, ci) {
-  const { id, brand, remaining } = bottle;
+  const { id, brand, remaining, logo } = bottle;
   const fillPct = Math.round((remaining / BOTTLE_ML) * 100);
   const pegsLeft = Math.floor(remaining / PEG_ML);
   const isLow = remaining > 0 && remaining < LOW_STOCK_THRESHOLD;
   const isEmpty = remaining === 0;
 
   const initials = brand.split(' ').slice(0, 2).map(w => w[0]).join('').toUpperCase();
+  const fillColor = isEmpty ? '#333' : isLow ? '#ff4444' : ci.color;
+  const fillGlow = isEmpty ? '' : isLow ? '0 0 8px #ff444466' : `0 0 8px ${ci.fillGlow}`;
 
-  const fillColor = isEmpty ? 'transparent' : isLow ? '#ff4444' : ci.color;
-  const fillGlow = isEmpty ? '' : isLow ? '0 0 12px #ff444466' : `0 0 12px ${ci.fillGlow}`;
+  const logoHtml = logo
+    ? `<img
+         src="${logo}"
+         alt="${brand}"
+         class="brand-logo-img"
+         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
+       />
+       <div class="brand-logo-fallback" style="color:${ci.color};display:none">${initials}</div>`
+    : `<div class="brand-logo-fallback" style="color:${ci.color};display:flex">${ci.emoji}<span style="font-size:0.9rem;margin-left:6px">${initials}</span></div>`;
 
   return `
     <div class="bottle-card ${isLow ? 'card-low' : ''} ${isEmpty ? 'card-empty' : ''}"
@@ -108,18 +117,15 @@ function renderBottleCard(bottle, category, ci) {
       ${isLow && !isEmpty ? `<div class="card-badge badge-low">⚠️ Low</div>` : ''}
       ${isEmpty ? `<div class="card-badge badge-empty">🚫 Empty</div>` : ''}
 
-      <div class="bottle-visual">
-        <div class="bottle-label" style="color:${ci.color}">${initials}</div>
-        <div class="bottle-wrap">
-          <div class="bottle-neck"></div>
-          <div class="bottle-body">
-            <div class="bottle-fill"
-                 style="height:${fillPct}%;background:${fillColor};box-shadow:${fillGlow}">
-            </div>
-            <span class="bottle-pct">${fillPct}%</span>
-          </div>
+      <div class="brand-logo-wrap">
+        ${logoHtml}
+      </div>
+
+      <div class="fill-bar-wrap">
+        <div class="fill-bar-track">
+          <div class="fill-bar-fill" style="width:${fillPct}%;background:${fillColor};box-shadow:${fillGlow}"></div>
         </div>
-        <div class="bottle-cap" style="background:${ci.color}"></div>
+        <span class="fill-bar-pct" style="color:${isLow ? '#ff4444' : ci.color}">${fillPct}%</span>
       </div>
 
       <div class="card-info">

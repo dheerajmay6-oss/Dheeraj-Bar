@@ -270,107 +270,66 @@ body {
 .badge-low { background: #ff444422; color: #ff8888; border: 1px solid #ff444455; }
 .badge-empty { background: #55555522; color: #aaa; border: 1px solid #55555555; }
 
-/* ── Bottle Visual ───────────────────────────────────────────────────────── */
-.bottle-visual {
+/* ── Brand Logo ──────────────────────────────────────────────────────────── */
+.brand-logo-wrap {
+  width: 100%;
+  height: 110px;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 4px;
-  position: relative;
+  justify-content: center;
+  background: #ffffff08;
+  border-radius: 10px;
+  padding: 12px;
+  border: 1px solid #ffffff0a;
 }
 
-.bottle-label {
+.brand-logo-img {
+  max-width: 100%;
+  max-height: 86px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
+  transition: transform 0.2s;
+}
+.bottle-card:hover .brand-logo-img { transform: scale(1.06); }
+
+.brand-logo-fallback {
+  align-items: center;
+  justify-content: center;
   font-family: 'Playfair Display', serif;
-  font-size: 1.25rem;
+  font-size: 2rem;
   font-weight: 800;
-  letter-spacing: 0.12em;
-  margin-bottom: 4px;
+  letter-spacing: 0.08em;
+  gap: 6px;
 }
 
-.bottle-cap {
-  width: 18px;
-  height: 10px;
-  border-radius: 3px 3px 0 0;
-  margin-bottom: -2px;
-  z-index: 1;
-}
-
-.bottle-wrap {
+/* ── Fill Bar ────────────────────────────────────────────────────────────── */
+.fill-bar-wrap {
+  width: 100%;
   display: flex;
-  flex-direction: column;
   align-items: center;
+  gap: 10px;
 }
 
-.bottle-neck {
-  width: 26px;
-  height: 32px;
-  background: linear-gradient(180deg, #1e1e1e 0%, #2a2a2a 100%);
-  border: 1px solid #3a3a3a;
-  border-bottom: none;
-  border-radius: 4px 4px 0 0;
-  position: relative;
-}
-.bottle-neck::before {
-  content: '';
-  position: absolute;
-  left: 4px;
-  top: 6px;
-  width: 4px;
-  height: 18px;
-  background: rgba(255,255,255,0.06);
-  border-radius: 2px;
-}
-
-.bottle-body {
-  width: 74px;
-  height: 126px;
-  background: #141414;
-  border: 1px solid #3a3a3a;
-  border-radius: 4px 4px 10px 10px;
-  position: relative;
+.fill-bar-track {
+  flex: 1;
+  height: 8px;
+  background: #1e1e1e;
+  border-radius: 50px;
   overflow: hidden;
-}
-.bottle-body::before {
-  content: '';
-  position: absolute;
-  left: 8px;
-  top: 0;
-  bottom: 0;
-  width: 5px;
-  background: rgba(255,255,255,0.04);
-  z-index: 3;
+  border: 1px solid #2a2a2a;
 }
 
-.bottle-fill {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  transition: height 0.7s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s;
-  z-index: 1;
-}
-.bottle-fill::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: rgba(255,255,255,0.25);
-  border-radius: 2px;
+.fill-bar-fill {
+  height: 100%;
+  border-radius: 50px;
+  transition: width 0.7s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s;
 }
 
-.bottle-pct {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 0.68rem;
+.fill-bar-pct {
+  font-size: 0.72rem;
   font-weight: 700;
-  color: rgba(255,255,255,0.75);
-  z-index: 4;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.8);
-  pointer-events: none;
+  min-width: 32px;
+  text-align: right;
 }
 
 /* ── Card Info ───────────────────────────────────────────────────────────── */

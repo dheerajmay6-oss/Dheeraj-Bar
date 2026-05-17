@@ -43,28 +43,28 @@ const CATEGORIES = {
 
 const DEFAULT_INVENTORY = {
   Whisky: [
-    { id: 'w1', brand: "Glenfiddich", remaining: 750 },
-    { id: 'w2', brand: "Lagavulin", remaining: 750 },
-    { id: 'w3', brand: "Chivas Regal", remaining: 750 },
-    { id: 'w4', brand: "Johnnie Walker Black", remaining: 750 },
-    { id: 'w5', brand: "Yamazaki", remaining: 750 },
+    { id: 'w1', brand: "Glenfiddich",         remaining: 750, logo: "https://logo.clearbit.com/glenfiddich.com" },
+    { id: 'w2', brand: "Lagavulin",            remaining: 750, logo: "https://logo.clearbit.com/lagavulin.com" },
+    { id: 'w3', brand: "Chivas Regal",         remaining: 750, logo: "https://logo.clearbit.com/chivas.com" },
+    { id: 'w4', brand: "Johnnie Walker Black", remaining: 750, logo: "https://logo.clearbit.com/johnniewalker.com" },
+    { id: 'w5', brand: "Yamazaki",             remaining: 750, logo: "https://logo.clearbit.com/suntory.com" },
   ],
   Vodka: [
-    { id: 'v1', brand: "Grey Goose", remaining: 750 },
-    { id: 'v2', brand: "Absolut", remaining: 750 },
+    { id: 'v1', brand: "Grey Goose", remaining: 750, logo: "https://logo.clearbit.com/greygoose.com" },
+    { id: 'v2', brand: "Absolut",    remaining: 750, logo: "https://logo.clearbit.com/absolut.com" },
   ],
   Gin: [
-    { id: 'g1', brand: "Bombay Sapphire", remaining: 750 },
-    { id: 'g2', brand: "Hendrick's", remaining: 750 },
+    { id: 'g1', brand: "Bombay Sapphire", remaining: 750, logo: "https://logo.clearbit.com/bombaysapphire.com" },
+    { id: 'g2', brand: "Hendrick's",      remaining: 750, logo: "https://logo.clearbit.com/hendricksgin.com" },
   ],
   Wine: [
-    { id: 'wi1', brand: "Cabernet Sauvignon", remaining: 750 },
-    { id: 'wi2', brand: "Merlot", remaining: 750 },
-    { id: 'wi3', brand: "Pinot Noir", remaining: 750 },
+    { id: 'wi1', brand: "Cabernet Sauvignon", remaining: 750, logo: "" },
+    { id: 'wi2', brand: "Merlot",             remaining: 750, logo: "" },
+    { id: 'wi3', brand: "Pinot Noir",         remaining: 750, logo: "" },
   ],
   Tequila: [
-    { id: 't1', brand: "Don Julio", remaining: 750 },
-    { id: 't2', brand: "Cazadores", remaining: 750 },
+    { id: 't1', brand: "Don Julio",  remaining: 750, logo: "https://logo.clearbit.com/donjulio.com" },
+    { id: 't2', brand: "Cazadores", remaining: 750, logo: "https://logo.clearbit.com/cazadores.com" },
   ],
 };
 
