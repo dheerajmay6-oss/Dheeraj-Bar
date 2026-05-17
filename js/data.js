@@ -50,24 +50,21 @@ const DEFAULT_INVENTORY = {
     { id: 'w5', brand: "Yamazaki", remaining: 750 },
   ],
   Vodka: [
-    { id: 'v1', brand: "Absolut", remaining: 750 },
-    { id: 'v2', brand: "Grey Goose", remaining: 750 },
-    { id: 'v3', brand: "Smirnoff", remaining: 750 },
+    { id: 'v1', brand: "Grey Goose", remaining: 750 },
+    { id: 'v2', brand: "Absolut", remaining: 750 },
   ],
   Gin: [
     { id: 'g1', brand: "Bombay Sapphire", remaining: 750 },
     { id: 'g2', brand: "Hendrick's", remaining: 750 },
-    { id: 'g3', brand: "Tanqueray", remaining: 750 },
   ],
   Wine: [
     { id: 'wi1', brand: "Cabernet Sauvignon", remaining: 750 },
     { id: 'wi2', brand: "Merlot", remaining: 750 },
-    { id: 'wi3', brand: "Chardonnay", remaining: 750 },
+    { id: 'wi3', brand: "Pinot Noir", remaining: 750 },
   ],
   Tequila: [
-    { id: 't1', brand: "Jose Cuervo", remaining: 750 },
-    { id: 't2', brand: "Patron Silver", remaining: 750 },
-    { id: 't3', brand: "Don Julio", remaining: 750 },
+    { id: 't1', brand: "Don Julio", remaining: 750 },
+    { id: 't2', brand: "Cazadores", remaining: 750 },
   ],
 };
 
