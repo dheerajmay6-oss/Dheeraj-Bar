@@ -1,0 +1,10 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 130">
+  <rect width="280" height="130" rx="8" fill="#0f0000"/>
+  <!-- stag silhouette -->
+  <path d="M132 24 Q130 18 126 14 Q129 18 128 12 M132 24 Q130 18 134 16 M148 24 Q150 18 154 14 Q151 18 152 12 M148 24 Q150 18 146 16" stroke="#cc2020" stroke-width="1.5" fill="none" opacity="0.9" stroke-linecap="round"/>
+  <ellipse cx="140" cy="26" rx="9" ry="7" fill="#cc2020" opacity="0.8"/>
+  <text x="140" y="70" font-family="Georgia,serif" font-size="26" fill="#ffffff" text-anchor="middle" letter-spacing="2" font-weight="bold">CAZADORES</text>
+  <line x1="40" y1="78" x2="240" y2="78" stroke="#cc2020" stroke-width="1" opacity="0.6"/>
+  <text x="140" y="94" font-family="Georgia,serif" font-size="10" fill="#cc4040" text-anchor="middle" letter-spacing="4">TEQUILA REPOSADO</text>
+  <text x="140" y="110" font-family="Georgia,serif" font-size="9" fill="#883020" text-anchor="middle" letter-spacing="3">JALISCO · MEXICO</text>
+</svg>

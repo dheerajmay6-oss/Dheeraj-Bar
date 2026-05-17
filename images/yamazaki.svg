@@ -1,0 +1,9 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 130">
+  <rect width="280" height="130" rx="8" fill="#1a0808"/>
+  <rect x="14" y="14" width="252" height="102" rx="4" fill="none" stroke="#c8a060" stroke-width="0.6" opacity="0.5"/>
+  <text x="140" y="46" font-family="serif" font-size="22" fill="#c8a060" text-anchor="middle" letter-spacing="8">山崎</text>
+  <line x1="60" y1="54" x2="220" y2="54" stroke="#c8a060" stroke-width="0.6" opacity="0.4"/>
+  <text x="140" y="78" font-family="Georgia,serif" font-size="28" fill="#e8d090" text-anchor="middle" letter-spacing="4" font-weight="bold">YAMAZAKI</text>
+  <text x="140" y="96" font-family="Georgia,serif" font-size="9" fill="#8a7040" text-anchor="middle" letter-spacing="4">SINGLE MALT WHISKY</text>
+  <text x="140" y="110" font-family="Georgia,serif" font-size="9" fill="#6a5030" text-anchor="middle" letter-spacing="3">SUNTORY</text>
+</svg>

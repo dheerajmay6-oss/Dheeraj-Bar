@@ -1,0 +1,10 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 130">
+  <rect width="280" height="130" rx="8" fill="#0a0e1a"/>
+  <rect x="18" y="18" width="244" height="94" rx="3" fill="none" stroke="#c0a840" stroke-width="0.8" opacity="0.4"/>
+  <!-- agave plant simple icon -->
+  <path d="M140 25 Q140 35 140 38 M132 30 Q136 34 140 38 M148 30 Q144 34 140 38 M128 34 Q134 36 140 38 M152 34 Q146 36 140 38" stroke="#c0a840" stroke-width="1.5" fill="none" opacity="0.7" stroke-linecap="round"/>
+  <text x="140" y="68" font-family="Georgia,serif" font-size="20" fill="#e0c060" text-anchor="middle" letter-spacing="3" font-weight="bold">DON JULIO</text>
+  <line x1="60" y1="76" x2="220" y2="76" stroke="#806820" stroke-width="0.6" opacity="0.6"/>
+  <text x="140" y="92" font-family="Georgia,serif" font-size="10" fill="#907830" text-anchor="middle" letter-spacing="4">TEQUILA</text>
+  <text x="140" y="107" font-family="Georgia,serif" font-size="9" fill="#604810" text-anchor="middle" letter-spacing="3">1942 · JALISCO</text>
+</svg>

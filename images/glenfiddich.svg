@@ -1,0 +1,12 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 130">
+  <rect width="280" height="130" rx="8" fill="#0d2b0d"/>
+  <line x1="20" y1="30" x2="260" y2="30" stroke="#c4a140" stroke-width="1.2" opacity="0.5"/>
+  <line x1="20" y1="100" x2="260" y2="100" stroke="#c4a140" stroke-width="1.2" opacity="0.5"/>
+  <!-- stag antler silhouette (simplified) -->
+  <path d="M130 28 Q125 20 118 14 Q122 18 120 12 M130 28 Q135 20 142 14 Q138 18 140 12" stroke="#c4a140" stroke-width="1.5" fill="none" opacity="0.8"/>
+  <ellipse cx="130" cy="30" rx="5" ry="6" fill="#c4a140" opacity="0.7"/>
+  <text x="140" y="65" font-family="Georgia,serif" font-size="30" fill="#c4a140" text-anchor="middle" font-style="italic" letter-spacing="1">Glenfiddich</text>
+  <text x="140" y="84" font-family="Georgia,serif" font-size="10" fill="#8a7030" text-anchor="middle" letter-spacing="5">SINGLE MALT SCOTCH</text>
+  <path d="M60 92 L90 92" stroke="#c4a140" stroke-width="0.8" opacity="0.4"/>
+  <path d="M190 92 L220 92" stroke="#c4a140" stroke-width="0.8" opacity="0.4"/>
+</svg>

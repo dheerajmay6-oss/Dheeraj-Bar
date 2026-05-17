@@ -1,0 +1,9 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 130">
+  <rect width="280" height="130" rx="8" fill="#0d1a30"/>
+  <!-- goose silhouette (simplified wing shape) -->
+  <path d="M100 35 Q120 25 140 30 Q160 25 180 35 Q165 40 140 38 Q115 40 100 35Z" fill="#b0c8e8" opacity="0.3"/>
+  <text x="140" y="72" font-family="Georgia,serif" font-size="22" fill="#c8dff0" text-anchor="middle" letter-spacing="4" font-weight="bold">GREY GOOSE</text>
+  <line x1="50" y1="80" x2="230" y2="80" stroke="#5080b0" stroke-width="0.8" opacity="0.5"/>
+  <text x="140" y="96" font-family="Georgia,serif" font-size="10" fill="#6090c0" text-anchor="middle" letter-spacing="5">VODKA</text>
+  <text x="140" y="112" font-family="Georgia,serif" font-size="9" fill="#405070" text-anchor="middle" letter-spacing="3">FRANCE</text>
+</svg>
