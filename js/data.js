@@ -43,10 +43,11 @@ const CATEGORIES = {
 
 const DEFAULT_INVENTORY = {
   Whisky: [
-    { id: 'w1', brand: "Jack Daniel's", remaining: 750 },
-    { id: 'w2', brand: "Johnnie Walker Black", remaining: 750 },
-    { id: 'w3', brand: "Glenfiddich 12", remaining: 750 },
-    { id: 'w4', brand: "Jameson", remaining: 750 },
+    { id: 'w1', brand: "Glenfiddich", remaining: 750 },
+    { id: 'w2', brand: "Lagavulin", remaining: 750 },
+    { id: 'w3', brand: "Chivas Regal", remaining: 750 },
+    { id: 'w4', brand: "Johnnie Walker Black", remaining: 750 },
+    { id: 'w5', brand: "Yamazaki", remaining: 750 },
   ],
   Vodka: [
     { id: 'v1', brand: "Absolut", remaining: 750 },
