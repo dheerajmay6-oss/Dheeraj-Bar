@@ -3,144 +3,183 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dheeraj's Bar — Inventory Manager</title>
+  <title>Dheeraj's Bar — Private Collection</title>
   <link rel="stylesheet" href="css/style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header class="app-header">
-    <div class="header-content">
-      <div class="logo">
-        <span class="logo-icon">🍾</span>
-        <div>
-          <h1 class="logo-title">Dheeraj's Bar</h1>
-          <p class="logo-sub">Home Inventory Manager</p>
+  <!-- ── HEADER ─────────────────────────────────────────────── -->
+  <header class="site-header">
+    <div class="header-inner">
+
+      <div class="brand">
+        <span class="brand-icon">🍾</span>
+        <div class="brand-text">
+          <h1>Dheeraj's Bar</h1>
+          <p>Private Collection</p>
         </div>
       </div>
-      <div class="header-actions">
-        <button class="btn-add" onclick="openAddModal()">+ Add Bottle</button>
-        <button class="btn-reset" onclick="confirmReset()" title="Reset all stock to defaults">↺ Reset</button>
+
+      <div class="header-stats">
+        <div class="hstat">
+          <span class="hstat-num" id="hs-bottles">—</span>
+          <span class="hstat-lbl">Bottles</span>
+        </div>
+        <div class="hstat-sep"></div>
+        <div class="hstat">
+          <span class="hstat-num" id="hs-litres">—</span>
+          <span class="hstat-lbl">Litres</span>
+        </div>
+        <div class="hstat-sep"></div>
+        <div class="hstat">
+          <span class="hstat-num" id="hs-pegs">—</span>
+          <span class="hstat-lbl">Pegs Left</span>
+        </div>
+        <div class="hstat-sep"></div>
+        <div class="hstat">
+          <span class="hstat-num hstat-warn" id="hs-low">—</span>
+          <span class="hstat-lbl">Low Stock</span>
+        </div>
       </div>
+
+      <div class="header-actions">
+        <button class="btn-add" onclick="openAddModal()">
+          <span class="btn-icon">+</span> Add Bottle
+        </button>
+        <button class="btn-icon-only" onclick="confirmReset()" title="Reset to defaults">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+            <path d="M3 3v5h5"/>
+          </svg>
+        </button>
+      </div>
+
     </div>
   </header>
 
-  <!-- LOW STOCK BANNER -->
-  <div id="low-stock-banner" class="low-stock-banner hidden">
-    <span class="banner-icon">⚠️</span>
-    <div class="banner-body">
-      <strong>Low Stock Alert!</strong>
-      <div id="low-stock-chips" class="banner-chips"></div>
+  <!-- ── ALERTS ─────────────────────────────────────────────── -->
+  <div id="alert-zone">
+    <div id="low-stock-banner" class="alert alert-low hidden">
+      <svg class="alert-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      <div class="alert-body">
+        <strong>Low Stock</strong>
+        <div id="low-stock-chips" class="alert-chips"></div>
+      </div>
+    </div>
+    <div id="empty-banner" class="alert alert-empty hidden">
+      <svg class="alert-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+      <span id="empty-text"></span>
     </div>
   </div>
 
-  <!-- EMPTY BOTTLES BANNER -->
-  <div id="empty-banner" class="empty-banner hidden">
-    <span>🚫</span>
-    <span id="empty-text"></span>
-  </div>
-
-  <!-- CATEGORY NAV -->
-  <nav class="cat-nav">
-    <button class="cat-btn active" data-cat="All" onclick="setCategory(this, 'All')">All</button>
-    <button class="cat-btn" data-cat="Whisky" onclick="setCategory(this, 'Whisky')">🥃 Whisky</button>
-    <button class="cat-btn" data-cat="Vodka" onclick="setCategory(this, 'Vodka')">🍸 Vodka</button>
-    <button class="cat-btn" data-cat="Gin" onclick="setCategory(this, 'Gin')">🌿 Gin</button>
-    <button class="cat-btn" data-cat="Wine" onclick="setCategory(this, 'Wine')">🍷 Wine</button>
-    <button class="cat-btn" data-cat="Tequila" onclick="setCategory(this, 'Tequila')">🌵 Tequila</button>
+  <!-- ── CATEGORY NAV ───────────────────────────────────────── -->
+  <nav class="cat-nav" id="cat-nav">
+    <div class="cat-nav-inner">
+      <button class="cat-pill active" data-cat="All" onclick="setCategory(this,'All')">All</button>
+      <button class="cat-pill" data-cat="Whisky" onclick="setCategory(this,'Whisky')">🥃 Whisky</button>
+      <button class="cat-pill" data-cat="Vodka" onclick="setCategory(this,'Vodka')">🍸 Vodka</button>
+      <button class="cat-pill" data-cat="Gin" onclick="setCategory(this,'Gin')">🌿 Gin</button>
+      <button class="cat-pill" data-cat="Wine" onclick="setCategory(this,'Wine')">🍷 Wine</button>
+      <button class="cat-pill" data-cat="Tequila" onclick="setCategory(this,'Tequila')">🌵 Tequila</button>
+    </div>
   </nav>
 
-  <!-- INVENTORY MAIN -->
+  <!-- ── INVENTORY ─────────────────────────────────────────── -->
   <main id="inventory-main" class="inventory-main"></main>
 
-  <!-- CONSUME MODAL -->
-  <div id="consume-modal" class="modal-overlay hidden" onclick="closeConsumeModal()">
+  <!-- ── CONSUME MODAL ─────────────────────────────────────── -->
+  <div id="consume-modal" class="modal-backdrop hidden" onclick="closeConsumeModal()">
     <div class="modal" onclick="event.stopPropagation()">
-      <div class="modal-header" id="consume-header">
-        <span class="modal-emoji" id="consume-emoji"></span>
-        <h2 class="modal-title" id="consume-title"></h2>
-        <button class="modal-close" onclick="closeConsumeModal()">✕</button>
+      <button class="modal-close-btn" onclick="closeConsumeModal()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <div class="modal-logo-area" id="consume-logo-area">
+        <img id="consume-logo-img" class="modal-logo-img" src="" alt="" onerror="this.style.display='none'"/>
       </div>
-      <div class="modal-body">
-        <div class="consume-row">
-          <span class="consume-label">Current stock:</span>
-          <strong id="consume-current" class="consume-val"></strong>
-        </div>
-        <div class="consume-row">
-          <span class="consume-label">Pegs to consume <em>(30 ml each)</em>:</span>
-        </div>
+      <div class="modal-category-tag" id="consume-cat-tag"></div>
+      <h2 class="modal-brand-name" id="consume-brand-name"></h2>
+      <div class="modal-stock-row">
+        <span>Current stock</span>
+        <strong id="consume-current-stock"></strong>
+      </div>
+
+      <div class="peg-section">
+        <p class="peg-label">Pegs to consume <span class="peg-sublabel">(30 ml each)</span></p>
         <div class="peg-counter">
           <button class="peg-btn" onclick="changePegs(-1)">−</button>
-          <span id="peg-value" class="peg-value">1</span>
+          <div class="peg-display">
+            <span id="peg-value">1</span>
+            <span class="peg-ml-hint" id="peg-ml-hint">= 30 ml</span>
+          </div>
           <button class="peg-btn" onclick="changePegs(1)">+</button>
         </div>
-        <div class="consume-calc">
-          <span>Consuming: <strong id="calc-ml">30 ml</strong></span>
-          <span>Remaining: <strong id="calc-after"></strong></span>
-        </div>
-        <div id="consume-warn" class="warn-msg hidden"></div>
       </div>
-      <div class="modal-footer">
-        <button class="btn-cancel" onclick="closeConsumeModal()">Cancel</button>
-        <button class="btn-confirm" id="btn-confirm-consume" onclick="confirmConsume()">Confirm</button>
+
+      <div class="modal-result-row">
+        <div class="result-item">
+          <span class="result-lbl">Consuming</span>
+          <strong class="result-val" id="calc-ml"></strong>
+        </div>
+        <div class="result-divider"></div>
+        <div class="result-item">
+          <span class="result-lbl">Remaining after</span>
+          <strong class="result-val" id="calc-after"></strong>
+        </div>
+      </div>
+
+      <div id="consume-warn" class="modal-warn hidden"></div>
+
+      <div class="modal-actions">
+        <button class="modal-btn-cancel" onclick="closeConsumeModal()">Cancel</button>
+        <button class="modal-btn-primary" id="btn-confirm-consume" onclick="confirmConsume()">Confirm</button>
       </div>
     </div>
   </div>
 
-  <!-- ADD BOTTLE MODAL -->
-  <div id="add-modal" class="modal-overlay hidden" onclick="closeAddModal()">
+  <!-- ── ADD BOTTLE MODAL ───────────────────────────────────── -->
+  <div id="add-modal" class="modal-backdrop hidden" onclick="closeAddModal()">
     <div class="modal" onclick="event.stopPropagation()">
-      <div class="modal-header" id="add-header">
-        <span class="modal-emoji" id="add-emoji">🍾</span>
-        <h2 class="modal-title">Add New Bottle</h2>
-        <button class="modal-close" onclick="closeAddModal()">✕</button>
-      </div>
-      <div class="modal-body">
-        <div class="form-group">
-          <label class="form-label">Category</label>
-          <div class="cat-chips" id="add-cat-chips">
-            <button class="cat-chip active" data-cat="Whisky" onclick="selectAddCat(this, 'Whisky')">🥃 Whisky</button>
-            <button class="cat-chip" data-cat="Vodka" onclick="selectAddCat(this, 'Vodka')">🍸 Vodka</button>
-            <button class="cat-chip" data-cat="Gin" onclick="selectAddCat(this, 'Gin')">🌿 Gin</button>
-            <button class="cat-chip" data-cat="Wine" onclick="selectAddCat(this, 'Wine')">🍷 Wine</button>
-            <button class="cat-chip" data-cat="Tequila" onclick="selectAddCat(this, 'Tequila')">🌵 Tequila</button>
-          </div>
+      <button class="modal-close-btn" onclick="closeAddModal()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <h2 class="modal-title-lg">Add to Collection</h2>
+      <p class="modal-subtitle">New bottle · 750 ml full</p>
+      <div class="form-group">
+        <label class="form-label">Category</label>
+        <div class="cat-chip-row" id="add-cat-chips">
+          <button class="add-cat-chip active" data-cat="Whisky" onclick="selectAddCat(this,'Whisky')">🥃 Whisky</button>
+          <button class="add-cat-chip" data-cat="Vodka" onclick="selectAddCat(this,'Vodka')">🍸 Vodka</button>
+          <button class="add-cat-chip" data-cat="Gin" onclick="selectAddCat(this,'Gin')">🌿 Gin</button>
+          <button class="add-cat-chip" data-cat="Wine" onclick="selectAddCat(this,'Wine')">🍷 Wine</button>
+          <button class="add-cat-chip" data-cat="Tequila" onclick="selectAddCat(this,'Tequila')">🌵 Tequila</button>
         </div>
-        <div class="form-group">
-          <label class="form-label">Brand Name</label>
-          <input
-            type="text"
-            id="add-brand-input"
-            class="brand-input"
-            placeholder="e.g. Macallan 18"
-            onkeydown="if(event.key==='Enter') confirmAdd()"
-          />
-        </div>
-        <p class="form-note">Bottle will be added at 750 ml (full)</p>
       </div>
-      <div class="modal-footer">
-        <button class="btn-cancel" onclick="closeAddModal()">Cancel</button>
-        <button class="btn-confirm" id="btn-confirm-add" onclick="confirmAdd()">Add to Bar</button>
+      <div class="form-group">
+        <label class="form-label">Brand Name</label>
+        <input type="text" id="add-brand-input" class="form-input" placeholder="e.g. Macallan 18"
+          onkeydown="if(event.key==='Enter') confirmAdd()" autocomplete="off"/>
+      </div>
+      <div class="modal-actions">
+        <button class="modal-btn-cancel" onclick="closeAddModal()">Cancel</button>
+        <button class="modal-btn-primary" id="btn-confirm-add" onclick="confirmAdd()">Add Bottle</button>
       </div>
     </div>
   </div>
 
-  <!-- REMOVE CONFIRM MODAL -->
-  <div id="remove-modal" class="modal-overlay hidden" onclick="closeRemoveModal()">
+  <!-- ── REMOVE MODAL ───────────────────────────────────────── -->
+  <div id="remove-modal" class="modal-backdrop hidden" onclick="closeRemoveModal()">
     <div class="modal modal-sm" onclick="event.stopPropagation()">
-      <div class="modal-header">
-        <span class="modal-emoji">🗑️</span>
-        <h2 class="modal-title">Remove Bottle?</h2>
-        <button class="modal-close" onclick="closeRemoveModal()">✕</button>
-      </div>
-      <div class="modal-body">
-        <p id="remove-confirm-text" style="color:var(--text-muted);font-size:0.95rem;text-align:center;padding:8px 0;"></p>
-      </div>
-      <div class="modal-footer">
-        <button class="btn-cancel" onclick="closeRemoveModal()">Cancel</button>
-        <button class="btn-confirm btn-danger" onclick="confirmRemove()">Remove</button>
+      <button class="modal-close-btn" onclick="closeRemoveModal()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <div class="remove-icon">🗑️</div>
+      <h2 class="modal-title-lg" style="margin-top:12px">Remove Bottle?</h2>
+      <p id="remove-confirm-text" class="modal-subtitle" style="margin-top:8px"></p>
+      <div class="modal-actions">
+        <button class="modal-btn-cancel" onclick="closeRemoveModal()">Keep it</button>
+        <button class="modal-btn-danger" onclick="confirmRemove()">Remove</button>
       </div>
     </div>
   </div>
