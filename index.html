@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dheeraj's Bar — Inventory Manager</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="app-header">
+    <div class="header-content">
+      <div class="logo">
+        <span class="logo-icon">🍾</span>
+        <div>
+          <h1 class="logo-title">Dheeraj's Bar</h1>
+          <p class="logo-sub">Home Inventory Manager</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button class="btn-add" onclick="openAddModal()">+ Add Bottle</button>
+        <button class="btn-reset" onclick="confirmReset()" title="Reset all stock to defaults">↺ Reset</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- LOW STOCK BANNER -->
+  <div id="low-stock-banner" class="low-stock-banner hidden">
+    <span class="banner-icon">⚠️</span>
+    <div class="banner-body">
+      <strong>Low Stock Alert!</strong>
+      <div id="low-stock-chips" class="banner-chips"></div>
+    </div>
+  </div>
+
+  <!-- EMPTY BOTTLES BANNER -->
+  <div id="empty-banner" class="empty-banner hidden">
+    <span>🚫</span>
+    <span id="empty-text"></span>
+  </div>
+
+  <!-- CATEGORY NAV -->
+  <nav class="cat-nav">
+    <button class="cat-btn active" data-cat="All" onclick="setCategory(this, 'All')">All</button>
+    <button class="cat-btn" data-cat="Whisky" onclick="setCategory(this, 'Whisky')">🥃 Whisky</button>
+    <button class="cat-btn" data-cat="Vodka" onclick="setCategory(this, 'Vodka')">🍸 Vodka</button>
+    <button class="cat-btn" data-cat="Gin" onclick="setCategory(this, 'Gin')">🌿 Gin</button>
+    <button class="cat-btn" data-cat="Wine" onclick="setCategory(this, 'Wine')">🍷 Wine</button>
+    <button class="cat-btn" data-cat="Tequila" onclick="setCategory(this, 'Tequila')">🌵 Tequila</button>
+  </nav>
+
+  <!-- INVENTORY MAIN -->
+  <main id="inventory-main" class="inventory-main"></main>
+
+  <!-- CONSUME MODAL -->
+  <div id="consume-modal" class="modal-overlay hidden" onclick="closeConsumeModal()">
+    <div class="modal" onclick="event.stopPropagation()">
+      <div class="modal-header" id="consume-header">
+        <span class="modal-emoji" id="consume-emoji"></span>
+        <h2 class="modal-title" id="consume-title"></h2>
+        <button class="modal-close" onclick="closeConsumeModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="consume-row">
+          <span class="consume-label">Current stock:</span>
+          <strong id="consume-current" class="consume-val"></strong>
+        </div>
+        <div class="consume-row">
+          <span class="consume-label">Pegs to consume <em>(30 ml each)</em>:</span>
+        </div>
+        <div class="peg-counter">
+          <button class="peg-btn" onclick="changePegs(-1)">−</button>
+          <span id="peg-value" class="peg-value">1</span>
+          <button class="peg-btn" onclick="changePegs(1)">+</button>
+        </div>
+        <div class="consume-calc">
+          <span>Consuming: <strong id="calc-ml">30 ml</strong></span>
+          <span>Remaining: <strong id="calc-after"></strong></span>
+        </div>
+        <div id="consume-warn" class="warn-msg hidden"></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-cancel" onclick="closeConsumeModal()">Cancel</button>
+        <button class="btn-confirm" id="btn-confirm-consume" onclick="confirmConsume()">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADD BOTTLE MODAL -->
+  <div id="add-modal" class="modal-overlay hidden" onclick="closeAddModal()">
+    <div class="modal" onclick="event.stopPropagation()">
+      <div class="modal-header" id="add-header">
+        <span class="modal-emoji" id="add-emoji">🍾</span>
+        <h2 class="modal-title">Add New Bottle</h2>
+        <button class="modal-close" onclick="closeAddModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">Category</label>
+          <div class="cat-chips" id="add-cat-chips">
+            <button class="cat-chip active" data-cat="Whisky" onclick="selectAddCat(this, 'Whisky')">🥃 Whisky</button>
+            <button class="cat-chip" data-cat="Vodka" onclick="selectAddCat(this, 'Vodka')">🍸 Vodka</button>
+            <button class="cat-chip" data-cat="Gin" onclick="selectAddCat(this, 'Gin')">🌿 Gin</button>
+            <button class="cat-chip" data-cat="Wine" onclick="selectAddCat(this, 'Wine')">🍷 Wine</button>
+            <button class="cat-chip" data-cat="Tequila" onclick="selectAddCat(this, 'Tequila')">🌵 Tequila</button>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Brand Name</label>
+          <input
+            type="text"
+            id="add-brand-input"
+            class="brand-input"
+            placeholder="e.g. Macallan 18"
+            onkeydown="if(event.key==='Enter') confirmAdd()"
+          />
+        </div>
+        <p class="form-note">Bottle will be added at 750 ml (full)</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-cancel" onclick="closeAddModal()">Cancel</button>
+        <button class="btn-confirm" id="btn-confirm-add" onclick="confirmAdd()">Add to Bar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- REMOVE CONFIRM MODAL -->
+  <div id="remove-modal" class="modal-overlay hidden" onclick="closeRemoveModal()">
+    <div class="modal modal-sm" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <span class="modal-emoji">🗑️</span>
+        <h2 class="modal-title">Remove Bottle?</h2>
+        <button class="modal-close" onclick="closeRemoveModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <p id="remove-confirm-text" style="color:var(--text-muted);font-size:0.95rem;text-align:center;padding:8px 0;"></p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-cancel" onclick="closeRemoveModal()">Cancel</button>
+        <button class="btn-confirm btn-danger" onclick="confirmRemove()">Remove</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
